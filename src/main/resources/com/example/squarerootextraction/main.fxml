@@ -13,14 +13,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="166.0" prefWidth="499.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.squarerootextraction.MainController">>
+<VBox prefHeight="166.0" prefWidth="499.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.squarerootextraction.MainController">
 <children>
     <MenuBar VBox.vgrow="NEVER">
         <menus>
-            <Menu mnemonicParsing="false" text="\%language">
+            <Menu mnemonicParsing="false" text="\%language" fx:id="language">
                 <items>
-                    <MenuItem mnemonicParsing="false" text="\%ru" />
-                    <MenuItem mnemonicParsing="false" text="\%en" />
                 </items>
             </Menu>
         </menus>
@@ -43,9 +41,9 @@
                 </GridPane.margin>
             </TextField>
             <Spinner prefHeight="25.0" prefWidth="197.0" GridPane.columnIndex="1" />
-            <Label text="\%precision" GridPane.halignment="RIGHT" />
-            <Label text="\%value" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" text="=" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+            <Label text="\%precision" GridPane.halignment="RIGHT" fx:id="precision"/>
+            <Label text="\%value" GridPane.halignment="RIGHT" GridPane.rowIndex="1" fx:id="value"/>
+            <Button mnemonicParsing="false" text="=" GridPane.halignment="RIGHT" GridPane.rowIndex="3" onAction="#onClick_Calculate" fx:id="button"/>
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="3">
                 <GridPane.margin>
                     <Insets right="15.0" />
