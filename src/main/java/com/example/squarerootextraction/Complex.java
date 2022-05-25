@@ -47,13 +47,15 @@ public class Complex {
         return (number.getReal().multiply(number.getReal()).add(number.getImaginary().multiply(number.getImaginary()))).sqrt(new MathContext(10));
     }
 
-
-    public String toString(int precision){
+    @Override
+    public String toString(){
+        int precision = 10;
         BigDecimal roundRealValue = real.setScale(precision, RoundingMode.HALF_UP);
         BigDecimal roundImaginaryValue = imaginary.setScale(precision, RoundingMode.HALF_UP);
         if (CheckZero(roundRealValue) && CheckZero(roundImaginaryValue)) return "0";
         return String.format("%s%s", CheckZero(roundRealValue) ? "" : roundRealValue, CheckZero(roundImaginaryValue) ? "" : ((roundImaginaryValue.compareTo(BigDecimal.valueOf(0)) > 0 && !CheckZero(roundRealValue) ? "+" + roundImaginaryValue:roundImaginaryValue) + "i"));
     }
+
 
 
     private boolean CheckZero(BigDecimal value){

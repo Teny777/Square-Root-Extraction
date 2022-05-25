@@ -93,11 +93,11 @@ public class MainController implements Initializable {
      */
     public void onClick_Calculate(ActionEvent actionEvent) {
         if (number instanceof BigDecimal)
-            resultValue.setText((SqrtSolver.sqrt((BigDecimal)number, precisionValue.getValue()).setScale(precisionValue.getValue(), RoundingMode.HALF_UP)).toString());
+            resultValue.setText((SqrtSolver.sqrt((BigDecimal)number, precisionValue.getValue()).setScale(10, RoundingMode.HALF_UP)).toString());
         else{
             Complex result = SqrtSolver.sqrt((Complex) number, precisionValue.getValue());
-            if (result.getImaginary().abs().compareTo(BigDecimal.valueOf(Math.pow(0.1, 7))) < 0) resultValue.setText(result.toString(precisionValue.getValue()));
-            else resultValue.setText("±(" + result.toString(precisionValue.getValue()) + ")");
+            if (result.getImaginary().abs().compareTo(BigDecimal.valueOf(Math.pow(0.1, 7))) < 0) resultValue.setText(result.toString());
+            else resultValue.setText("±(" + result.toString() + ")");
         }
     }
 
@@ -158,7 +158,7 @@ public class MainController implements Initializable {
                     imaginary += value.charAt(i);
             }
             if (imaginary.equals("-")) imaginary = "-1";
-            if (imaginary.equals("")) imaginary = "1";
+            if (imaginary.equals("+")) imaginary = "1";
             result = new Complex(new BigDecimal(real), new BigDecimal(imaginary));
         }
 

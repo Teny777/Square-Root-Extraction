@@ -10,7 +10,7 @@ public class SqrtSolver {
         BigDecimal x = value.divide(new BigDecimal(2.0), 10, RoundingMode.HALF_UP);
         int iterations = 0;
         BigDecimal eps = BigDecimal.valueOf(Math.pow(0.1, precision));
-        while ((x.multiply(x).subtract(value)).abs().compareTo(eps) > 0 && iterations != 100) {
+        while ((x.multiply(x).subtract(value)).abs().compareTo(eps) > 0 && iterations != 1000) {
             x = BigDecimal.valueOf(0.5).multiply(x.add(value.divide(x, 10, RoundingMode.HALF_UP)));
             iterations++;
         }
