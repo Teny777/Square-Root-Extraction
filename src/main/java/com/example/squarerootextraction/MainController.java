@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.RoundingMode;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -81,6 +82,7 @@ public class MainController implements Initializable {
     private void initializeInputValues(){
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10);
         valueFactory.setValue(1);
+
         precisionValue.setValueFactory(valueFactory);
         inputValue.textProperty().addListener(this::inputValueChanged);
     }
@@ -91,11 +93,11 @@ public class MainController implements Initializable {
      */
     public void onClick_Calculate(ActionEvent actionEvent) {
         if (number instanceof BigDecimal)
-            resultValue.setText(SqrtSolver.sqrt((BigDecimal)number, precisionValue.getValue()).toString());
+            resultValue.setText((SqrtSolver.sqrt((BigDecimal)number, precisionValue.getValue()).setScale(precisionValue.getValue(), RoundingMode.HALF_UP)).toString());
         else{
             Complex result = SqrtSolver.sqrt((Complex) number, precisionValue.getValue());
-            if (result.getImaginary().abs().compareTo(BigDecimal.valueOf(Math.pow(0.1, 7))) < 0) resultValue.setText(result.toString());
-            else resultValue.setText("±(" + result.toString() + ")");
+            if (result.getImaginary().abs().compareTo(BigDecimal.valueOf(Math.pow(0.1, 7))) < 0) resultValue.setText(result.toString(precisionValue.getValue()));
+            else resultValue.setText("±(" + result.toString(precisionValue.getValue()) + ")");
         }
     }
 
